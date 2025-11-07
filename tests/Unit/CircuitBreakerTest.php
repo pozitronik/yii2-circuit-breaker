@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Beeline\CircuitBreaker\Tests\Unit;
 
-use beeline\CircuitBreaker\BreakerInterface;
-use beeline\CircuitBreaker\CircuitBreaker;
+use Beeline\CircuitBreaker\BreakerInterface;
+use Beeline\CircuitBreaker\CircuitBreaker;
 use PHPUnit\Framework\TestCase;
 
 /**
