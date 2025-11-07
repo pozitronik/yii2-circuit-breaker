@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace beeline\CircuitBreaker;
+namespace Beeline\CircuitBreaker;
 
 /**
  * Интерфейс для реализации паттерна Circuit Breaker

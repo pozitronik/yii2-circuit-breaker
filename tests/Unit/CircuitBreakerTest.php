@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace beeline\CircuitBreaker\Tests\Unit;
+namespace Beeline\CircuitBreaker\Tests\Unit;
 
 use beeline\CircuitBreaker\BreakerInterface;
 use beeline\CircuitBreaker\CircuitBreaker;

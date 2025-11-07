@@ -21,12 +21,12 @@
   },
   "autoload": {
     "psr-4": {
-      "beeline\\CircuitBreaker\\": "src/"
+      "Beeline\\CircuitBreaker\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "beeline\\CircuitBreaker\\Tests\\": "tests/"
+      "Beeline\\CircuitBreaker\\Tests\\": "tests/"
     }
   },
   "repositories": [
