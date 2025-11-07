@@ -1,0 +1,41 @@
+{
+  "name": "beeline/yii2-circuit-breaker",
+  "description": "Circuit Breaker pattern implementation for Yii2 to prevent cascading failures",
+  "type": "yii2-extension",
+  "keywords": ["yii2", "circuit-breaker", "resilience", "fault-tolerance"],
+  "license": "MIT",
+  "authors": [
+	  {
+		  "name" : "Pavel Dubrovsky",
+		  "email": "antikillerxxl@gmail.com"
+	  }
+  ],
+  "require": {
+    "php": "^8.4",
+    "yiisoft/yii2": "^2.0.45"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "beeline\\CircuitBreaker\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "beeline\\CircuitBreaker\\tests\\": "tests/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  }
+}
