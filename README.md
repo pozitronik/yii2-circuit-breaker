@@ -1,10 +1,10 @@
 # Circuit Breaker для Yii2
 
-[![Тесты](https://github.com/pozitronik/yii2-circuit-breaker/actions/workflows/tests.yml/badge.svg)](https://github.com/pozitronik/yii2-circuit-breaker/actions/workflows/tests.yml)
+[![Tests](https://github.com/pozitronik/yii2-circuit-breaker/actions/workflows/tests.yml/badge.svg)](https://github.com/pozitronik/yii2-circuit-breaker/actions/workflows/tests.yml)
 [![Codecov](https://codecov.io/gh/pozitronik/yii2-circuit-breaker/branch/master/graph/badge.svg)](https://codecov.io/gh/pozitronik/yii2-circuit-breaker)
-[![Версия Packagist](https://img.shields.io/packagist/v/beeline/yii2-circuit-breaker)](https://packagist.org/packages/beeline/yii2-circuit-breaker)
-[![Загрузки Packagist](https://img.shields.io/packagist/dt/beeline/yii2-circuit-breaker)](https://packagist.org/packages/beeline/yii2-circuit-breaker)
-[![Лицензия](https://img.shields.io/packagist/l/beeline/yii2-circuit-breaker)](https://packagist.org/packages/beeline/yii2-circuit-breaker)
+[![Packagist Version](https://img.shields.io/packagist/v/beeline/yii2-circuit-breaker)](https://packagist.org/packages/beeline/yii2-circuit-breaker)
+[![Packagist License](https://img.shields.io/packagist/l/beeline/yii2-circuit-breaker)](https://packagist.org/packages/beeline/yii2-circuit-breaker)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/beeline/yii2-circuit-breaker)](https://packagist.org/packages/beeline/yii2-circuit-breaker)
 
 Надёжная реализация паттерна Circuit Breaker для Yii2 приложений, предотвращающая каскадные сбои в распределённых системах.
 
