@@ -58,7 +58,7 @@ interface BreakerInterface
     /**
      * Получить статистику работы breaker
      *
-     * @return array Массив со статистикой (failures, successes, etc.)
+     * @return array{total: int, failures: int, failureRate: float, lastOpenedAt: int|null, totalOpens: int, currentStreak: int}
      */
     public function getStats(): array;
 

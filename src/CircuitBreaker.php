@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpMemberCanBePulledUpInspection */
 declare(strict_types=1);
 
 namespace Beeline\CircuitBreaker;
@@ -59,6 +60,21 @@ class CircuitBreaker extends Component implements BreakerInterface
     private int $halfOpenSuccesses = 0;
 
     /**
+     * Временная метка последнего открытия цепи (для статистики)
+     */
+    private ?int $lastOpenedAt = null;
+
+    /**
+     * Общее количество открытий цепи
+     */
+    private int $totalOpens = 0;
+
+    /**
+     * Текущая серия успехов/неудач (положительное = успехи, отрицательное = неудачи)
+     */
+    private int $currentStreak = 0;
+
+    /**
      * Проверить, разрешен ли запрос
      *
      * @return bool True если запрос может быть выполнен, false если цепь открыта
@@ -86,6 +102,8 @@ class CircuitBreaker extends Component implements BreakerInterface
             }
         } elseif ($this->currentState === BreakerInterface::STATE_CLOSED) {
             $this->addToWindow(true);
+            // Обновляем серию успехов
+            $this->currentStreak = $this->currentStreak >= 0 ? $this->currentStreak + 1 : 1;
             // Проверяем порог и после успеха (цепь может нуждаться в открытии)
             $this->checkThreshold();
         }
@@ -100,6 +118,8 @@ class CircuitBreaker extends Component implements BreakerInterface
             $this->openCircuit();
         } elseif ($this->currentState === BreakerInterface::STATE_CLOSED) {
             $this->addToWindow(false);
+            // Обновляем серию неудач (отрицательные значения)
+            $this->currentStreak = $this->currentStreak <= 0 ? $this->currentStreak - 1 : -1;
             $this->checkThreshold();
         }
     }
@@ -162,12 +182,15 @@ class CircuitBreaker extends Component implements BreakerInterface
         $this->requestWindow = [];
         $this->openedAt = null;
         $this->halfOpenSuccesses = 0;
+        $this->lastOpenedAt = null;
+        $this->totalOpens = 0;
+        $this->currentStreak = 0;
     }
 
     /**
      * Получить статистику отказов
      *
-     * @return array{total: int, failures: int, failureRate: float}
+     * @return array{total: int, failures: int, failureRate: float, lastOpenedAt: int|null, totalOpens: int, currentStreak: int}
      */
     public function getStats(): array
     {
@@ -178,6 +201,9 @@ class CircuitBreaker extends Component implements BreakerInterface
             'total' => $total,
             'failures' => $failures,
             'failureRate' => $total > 0 ? $failures / $total : 0.0,
+            'lastOpenedAt' => $this->lastOpenedAt,
+            'totalOpens' => $this->totalOpens,
+            'currentStreak' => $this->currentStreak,
         ];
     }
 
@@ -239,6 +265,8 @@ class CircuitBreaker extends Component implements BreakerInterface
     {
         $this->currentState = BreakerInterface::STATE_OPEN;
         $this->openedAt = time();
+        $this->lastOpenedAt = $this->openedAt;
+        $this->totalOpens++;
         $this->halfOpenSuccesses = 0;
     }
 
@@ -250,6 +278,7 @@ class CircuitBreaker extends Component implements BreakerInterface
         $this->currentState = BreakerInterface::STATE_CLOSED;
         $this->openedAt = null;
         $this->halfOpenSuccesses = 0;
+        $this->currentStreak = 0; // Сбрасываем серию при восстановлении
         $this->requestWindow = []; // Сбрасываем окно при восстановлении
     }
 }
