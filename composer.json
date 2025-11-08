@@ -3,7 +3,7 @@
   "description": "Circuit Breaker pattern implementation for Yii2 to prevent cascading failures",
   "type": "yii2-extension",
   "keywords": ["yii2", "circuit-breaker", "resilience", "fault-tolerance"],
-  "license": "GPL-3.0-or-later",
+  "license": "LGPL-3.0",
   "minimum-stability": "stable",
   "prefer-stable": true,
   "authors": [

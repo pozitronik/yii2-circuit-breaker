@@ -317,4 +317,4 @@ vendor/bin/phpunit --coverage-html coverage/
 
 ## Лицензия
 
-GNU GPLv3.
+GNU Lesser General Public License 3.0
